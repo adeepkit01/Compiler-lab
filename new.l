@@ -62,14 +62,14 @@ auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for
 
 "\a"|"\\n"|"\\b"|"\t"|"\\t"|"\b"|"\\a" {if(flag==1) {;} else fprintf(yyout,"%s\tESCAPE SEQUENCES\n",yytext);}
 
-(DIGIT)+("E"("+"|"-")?(DIGIT)+)?	{if(flag==1){;} else fprintf(yyout,"%sINTEGER LITERAL\n",yytext);}
+{DIGIT}+("E"|"e")("+"|"-")?{DIGIT}+?	{if(flag==1){;} else fprintf(yyout,"%s INTEGER LITERAL\n",yytext);}
 (CSYMBOL)+(CHARACTER)+(CSYMBOL)         {if(flag==1){;} else fprintf(yyout,"%s CHARACTERLITERAL\n",yytext);}
 '([^'\\\n]|\\.)'                         {if(flag==1){;} else fprintf(yyout,"%s CHARACTERLITERAL\n",yytext);}\
 '  					 {if(flag==1){;} else fprintf(yyout,"%s unterminated CHARACTERLITERAL\n",yytext);}
 ''                                       {if(flag==1){;} else fprintf(yyout,"%s Empty CHARACTERLITERAL\n",yytext);}
 
    
-(DIGIT)+"."(DIGIT)+("E"("+"|"-")?(DIGIT)+)? {if(flag==1) {;} else fprintf(yyout,"%s\tFLOAT LITERAL\n",yytext);}  
+{DIGIT}+"."{DIGIT}+("E"("+"|"-")?{DIGIT}+)? {if(flag==1) {;} else fprintf(yyout,"%s\tFLOAT LITERAL\n",yytext);}  
 
 
 {ID}                                                                                       {printf( "Identifier:%s\n", yytext );}
