@@ -409,7 +409,11 @@ function_definition
 #include <stdio.h>
 
 extern char yytext[];
+<<<<<<< HEAD
 extern int yylineno;
+=======
+extern int lineno;
+>>>>>>> c0a496b2c7c1f9cb30a9355cfbf9e6988847325c
 
 
 
@@ -417,7 +421,11 @@ yyerror(s)
 char *s;
 {
 	fflush(stdout);
+<<<<<<< HEAD
 	printf("line no.%d:%s\n",yylineno,s);
+=======
+	printf("line no.%d:%s\n",lineno,s);
+>>>>>>> c0a496b2c7c1f9cb30a9355cfbf9e6988847325c
 }
 
 
